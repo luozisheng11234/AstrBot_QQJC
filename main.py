@@ -124,7 +124,7 @@ class FeishuWebhook:
                         "padding": "12px 12px 12px 12px",
                     },
                 },
-            },
+            }
         
         
         try:
