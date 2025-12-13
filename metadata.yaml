@@ -3,4 +3,4 @@ display_name: QQ # 用于展示的名字，可以是方便人类阅读的名字�
 desc: AstrBot 插件示例。 # 插件简短描述
 version: v1.0.2 # 插件版本号。格式：v1.1.1 或者 v1.1
 author: boshi # 作者
-repo: https://github.com/luozisheng11234/AstrBot_QQJC # 插件的仓库地址
+repo: https://github.com/Soulter/helloworld # 插件的仓库地址
