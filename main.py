@@ -10,14 +10,7 @@ class MyPlugin(Star):
 
     async def initialize(self):
         """可选择实现异步的插件初始化方法，当实例化该插件类之后会自动调用该方法。"""
-    
-    async def 执行飞书(self, event: AstrMessageEvent):
-        获取用户的QQ名称 = event.message_obj.sender.nickname
-        获取用户发送的消息 = event.message_str # 用户发的纯文本消息字符串
-        获取群聊ID = event.message_obj.group_id
-        message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
-        logger.info(message_chain)
-        yield event.plain_result(f"Hello, {获取用户的QQ名称}, 测试一下 {获取用户发送的消息}!, 群聊ID: {获取群聊ID}") # 发送一条纯文本消息
+
 
     # 注册指令的装饰器。指令名为 helloworld。注册成功后，发送 `/helloworld` 就会触发这个指令，并回复 `你好, {user_name}!`
     @filter.command("QQ")
