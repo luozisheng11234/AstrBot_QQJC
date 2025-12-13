@@ -80,23 +80,52 @@ class FeishuWebhook:
             print(f"发送消息失败: {e}")
         return None
     
-    async def 发送富文本信息(self, title: str, content: str) -> Optional[Dict[str, Any]]:
+    async def 发送富文本信息(self, title: str, content: str, 颜色: str = "blue") -> Optional[Dict[str, Any]]:
         """发送markdown消息"""
         payload = {
-            "msg_type": "interactive",
-            "card": {
-                "header": {
-                    "title": {
-                        "tag": "plain_text",
-                        "content": title
-                    }
+                "msg_type": "interactive",
+                "card": {
+                    "schema": "2.0",
+                    "config": {
+                        "update_multi": True,
+                        "style": {
+                            "text_size": {
+                                "normal_v2": {
+                                    "default": "normal",
+                                    "pc": "normal",
+                                    "mobile": "heading",
+                                }
+                            }
+                        },
+                    },
+                    "body": {
+                        "direction": "vertical",
+                        "padding": "12px 12px 12px 12px",
+                        "elements": [
+                            {
+                                "tag": "markdown",
+                                "content": f"""<font color='{颜色}'>{content}</font>""",
+                                "text_align": "left",
+                                "text_size": "normal_v2",
+                                "margin": "0px 0px 0px 0px",
+                            },
+                        ],
+                    },
+                    "header": {
+                        "title": {
+                            "tag": "plain_text",
+                            "content": title,
+                        },
+                        "subtitle": {
+                            "tag": "plain_text",
+                            "content": "",
+                        },
+                        "template": "blue",
+                        "padding": "12px 12px 12px 12px",
+                    },
                 },
-                "elements": [{
-                    "tag": "markdown",
-                    "content": content
-                }]
-            }
-        }
+            },
+        
         
         try:
             response = await self.client.post(
