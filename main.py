@@ -1,7 +1,7 @@
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
-from 网络请求 import FeishuWebhook
+from qinqiu import FeishuWebhook
 @register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
 class MyPlugin(Star):
     def __init__(self, context: Context):
@@ -15,7 +15,7 @@ class MyPlugin(Star):
     async def on_all_message(self, event: AstrMessageEvent):
         获取用户发送的消息 = event.message_str
         if 获取用户发送的消息 is not None:
-            async with FeishuWebhook("https://open.feishu.cn/open-apis/bot/v2/hook/1234567890abcdef1234567890abcdef") as webhook:
+            async with FeishuWebhook("https://open.feishu.cn/open-apis/bot/v2/hook/ac945fce-3ebd-4e8e-95d5-6c25d6bf8191") as webhook:
                 await webhook.发送文本信息(获取用户发送的消息)
             #yield event.plain_result("收到了一条消息。")
     # 注册指令的装饰器。指令名为 helloworld。注册成功后，发送 `/helloworld` 就会触发这个指令，并回复 `你好, {user_name}!`

@@ -1,5 +1,4 @@
 import httpx
-import asyncio
 from typing import Optional, Dict, Any
 
 class FeishuWebhook:
@@ -66,19 +65,5 @@ class FeishuWebhook:
             print(f"发送markdown消息失败: {e}")
         return None
 
-# 使用示例
-async def example_usage():
-    webhook_url = "https://open.feishu.cn/open-apis/bot/v2/hook/ac945fce-3ebd-4e8e-95d5-6c25d6bf8191"
-    
-    async with FeishuWebhook(webhook_url) as feishu:
-        # 发送文本消息
-        result = await feishu.发送文本信息("Hello from async httpx!")
-        if result:
-            print(f"消息发送成功: {result}")
-        
-        # 发送markdown消息
-        md_result = await feishu.发送富文本信息(
-            title="异步通知",
-            content="**这是来自异步客户端的消息**\n\n- 项目：测试\n- 状态：成功"
-        )
+
 
