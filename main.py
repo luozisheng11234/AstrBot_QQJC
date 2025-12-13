@@ -18,9 +18,9 @@ class MyPlugin(Star):
     async def on_all_message(self, event: AstrMessageEvent):
         获取用户发送的消息 = event.message_str
         获取QQ群 = event.message_obj.group_id
-        if 获取用户发送的消息 is not None and 获取用户发送的消息 != "":
+        获取用户的QQ名称 = event.message_obj.sender.nickname
+        if 获取用户发送的消息 is not None and 获取用户发送的消息 != "" and "弘升" in 获取用户的QQ名称:
             async with FeishuWebhook("https://open.feishu.cn/open-apis/bot/v2/hook/ac945fce-3ebd-4e8e-95d5-6c25d6bf8191") as webhook:
-                获取用户的QQ名称 = event.message_obj.sender.nickname
                 await webhook.发送富文本信息(
                         f"群聊ID: {获取QQ群}",
                         f"发送者QQ名称: {获取用户的QQ名称}, \n 发送信息: {获取用户发送的消息}"
