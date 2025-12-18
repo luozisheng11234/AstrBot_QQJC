@@ -40,6 +40,18 @@ class MyPlugin(Star):
         logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 测试一下 {message_str}!, 群聊ID: {获取QQ群}, 发送者QQ名称: {获取用户的QQ名称}, 发送者QQID: {获取用户发送的消息}") # 发送一条纯文本消息
 
+    @filter.command("获取好友列表")
+    async def helloworld(self, event: AstrMessageEvent):
+        if event.get_platform_name() == "aiocqhttp":
+            # qq
+            from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
+            assert isinstance(event, AiocqhttpMessageEvent)
+            client = event.bot # 得到 client
+            payloads = {
+               "no_cache": False
+            }
+            ret = await client.api.call_action('get_friend_list', **payloads) # 调用 协议端  API
+            logger.info(f"get_friend_list: {ret}")
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
