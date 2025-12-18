@@ -43,10 +43,12 @@ class MyPlugin(Star):
     @filter.command("helloworld")
     async def helloworld(self, event: AstrMessageEvent):
         if event.get_platform_name() == "aiocqhttp":
+            logger.info(f"进来了")
             # qq
             from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
             assert isinstance(event, AiocqhttpMessageEvent)
             client = event.bot # 得到 client
+            logger.info(f"得到client: {client}")
             payloads = {
               
             }
