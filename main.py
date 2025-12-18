@@ -42,6 +42,7 @@ class MyPlugin(Star):
 
     @filter.command("QC")
     async def QC(self, event: AstrMessageEvent):
+        logger.info(event.get_platform_name())
         if event.get_platform_name() == "aiocqhttp":
             logger.info(f"进来了")
             # qq
