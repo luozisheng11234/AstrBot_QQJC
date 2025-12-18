@@ -53,7 +53,10 @@ class MyPlugin(Star):
             payloads = {
               
             }
-            ret = await client.api.call_action('get_status', **payloads) # 调用 协议端  API
+            headers = {
+               'Content-Type': 'application/json'
+            }
+            ret = await client.api.call_action('get_status', **payloads, **headers) # 调用 协议端  API
             logger.info(f"get_status: {ret}")
 
     async def terminate(self):
