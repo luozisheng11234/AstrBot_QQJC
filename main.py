@@ -20,12 +20,33 @@ class MyPlugin(Star):
         获取QQ群 = event.message_obj.group_id
         获取用户的QQ名称 = event.message_obj.sender.nickname
         if 获取用户发送的消息 is not None and 获取用户发送的消息 != "" and "弘升" in 获取用户的QQ名称:
-
             async with FeishuWebhook("https://open.feishu.cn/open-apis/bot/v2/hook/2ef23e46-ba4e-4830-bff7-50cc8629e33c") as webhook:
                 await webhook.发送富文本信息(
                         f"群聊ID: {获取QQ群}",
                         f"发送者QQ名称: {获取用户的QQ名称}, \n 发送信息: {获取用户发送的消息}"
                     )
+        if 获取用户发送的消息 is not None and 获取用户发送的消息 != "" and "罗梓晟" in 获取用户的QQ名称:
+            信息ID = event.message_obj.message_id
+            获取QQ群 = event.message_obj.group_id
+            payload = {
+                    "group_id": 获取QQ群,
+                    "message": [
+                        {
+                            "type": "reply",
+                            "data": {
+                                "id": 信息ID
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "data": {
+                                "text": "回复你了"
+                            }
+                        }
+                    ]
+            }
+            ret = await self.QQapi(event, "send_group_msg", payload)
+            logger.info(ret)
             #yield event.plain_result("收到了一条消息。")
     # 注册指令的装饰器。指令名为 helloworld。注册成功后，发送 `/helloworld` 就会触发这个指令，并回复 `你好, {user_name}!`
     @filter.command("QQ")
