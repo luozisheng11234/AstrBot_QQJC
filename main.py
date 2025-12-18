@@ -40,8 +40,8 @@ class MyPlugin(Star):
         logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 测试一下 {message_str}!, 群聊ID: {获取QQ群}, 发送者QQ名称: {获取用户的QQ名称}, 发送者QQID: {获取用户发送的消息}") # 发送一条纯文本消息
 
-    @filter.command("helloworld")
-    async def helloworld(self, event: AstrMessageEvent):
+    @filter.command("QC")
+    async def QC(self, event: AstrMessageEvent):
         if event.get_platform_name() == "aiocqhttp":
             logger.info(f"进来了")
             # qq
